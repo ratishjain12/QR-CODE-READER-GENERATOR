@@ -9,7 +9,7 @@
 
 .cards {
     display: flex;
-    height: 800px;
+    height: 700px;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
