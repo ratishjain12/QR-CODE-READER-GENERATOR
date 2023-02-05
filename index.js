@@ -23,6 +23,7 @@ fileInp = document.querySelector(".input-field-file");
 scanBtn = document.querySelector(".button2");
 fileImg = document.querySelector(".upload");
 info = document.querySelector(".gen-text");
+copyBtn = document.querySelector(".button3");
 let data;
 
 fileInp.addEventListener("change", e => {
@@ -45,11 +46,12 @@ fileInp.addEventListener("change", e => {
 
 
 scanBtn.addEventListener("click", () => {
-    scanBtn.innerText = "Scanning ...";
     if (!data) {
         alert("please select a qr code...");
         return;
     }
+    scanBtn.innerText = "Scanning ...";
+
 
     fetch("http://api.qrserver.com/v1/read-qr-code/", {
         method: "POST", body: data
@@ -58,6 +60,7 @@ scanBtn.addEventListener("click", () => {
         scanBtn.innerText = "Scan";
         info.innerText = result[0]['symbol'][0]['data'];
         info.classList.add("gen-text-active");
+        copyBtn.classList.add("button3-active");
         console.log(result);
     });
 });
@@ -65,6 +68,27 @@ scanBtn.addEventListener("click", () => {
 
 readForm.addEventListener("click", () => fileInp.click());
 
+
+copyBtn.addEventListener("click", (e) => {
+    var text_to_copy = document.querySelector(".gen-text").innerHTML;
+
+    if (!navigator.clipboard) {
+        // use old commandExec() way
+        text_to_copy.select();
+        input.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+    } else {
+        navigator.clipboard.writeText(text_to_copy).then(
+            function () {
+                alert("Copied..."); // success 
+            })
+            .catch(
+                function () {
+                    alert("err"); // error
+                });
+    }
+
+})
 
 
 

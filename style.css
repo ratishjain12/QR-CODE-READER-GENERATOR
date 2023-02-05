@@ -85,7 +85,7 @@
 
 .active {
     height: 450px;
-
+    margin-bottom: 30px;
 }
 
 .items {
@@ -163,4 +163,20 @@
     resize: none;
     text-align: center;
 
+}
+
+.button3 {
+    display: none;
+    width: 12rem;
+    padding: 10px;
+    border-radius: 30px;
+    border-style: none;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: 20px;
+}
+
+.button3-active {
+    display: block;
+    margin-top: 10px;
 }
